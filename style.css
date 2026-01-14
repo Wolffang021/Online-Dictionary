@@ -1,4 +1,4 @@
-main {
+.inputBox {
     display: flex;
     flex-direction: row;
 }

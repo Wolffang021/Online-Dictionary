@@ -11,25 +11,31 @@
 <body>
     <header>
         <h1>Free Online Dictionary</h1>
+        <h3>For Everyone</h3>
     </header>
     <main>
-        <div class="wave-group">
-            <input required="" type="text" class="input">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">E</span>
-                <span class="label-char" style="--index: 1">n</span>
-                <span class="label-char" style="--index: 2">t</span>
-                <span class="label-char" style="--index: 3">e</span>
-                <span class="label-char" style="--index: 4">r </span>
-                <span class="label-char" style="--index: 5">w</span>
-                <span class="label-char" style="--index: 6">o</span>
-                <span class="label-char" style="--index: 7">r</span>
-                <span class="label-char" style="--index: 8">d</span>
-            </label>
+        <div class="inputBox">
+            <div class="wave-group">
+                <input required="" type="text" class="input">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">E</span>
+                    <span class="label-char" style="--index: 1">n</span>
+                    <span class="label-char" style="--index: 2">t</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                    <span class="label-char" style="--index: 4">r </span>
+                    <span class="label-char" style="--index: 5">w</span>
+                    <span class="label-char" style="--index: 6">o</span>
+                    <span class="label-char" style="--index: 7">r</span>
+                    <span class="label-char" style="--index: 8">d</span>
+                </label>
+            </div>
+            <button onclick="searchWord()">🔎</button>
         </div>
-        <button onclick="searchWord()">🔎</button>
+        <div class="result"></div>
     </main>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
