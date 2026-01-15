@@ -21,18 +21,23 @@ function displayDefinition(searchedWord, def) {
         html += `<hr><p>Audio not available</p>`;
     }
 
+    html += `<ul>`;
     def.meanings.forEach(meaning => {
         html += `<hr><h3><strong>Part of speech:</strong> ${meaning.partOfSpeech}</h3>`;
 
+        html += `<ol>`;
         meaning.definitions.forEach(definitionVar => {
-            html += `<p>${definitionVar.definition}</p>`;
+            html += `<li><p>${definitionVar.definition}</p>`;
 
             const example = definitionVar.example;
             if (example) {
                 html += `<p><strong>Example:</strong> ${example}</p>`;
             }
+            html += `</li>`;
         });
+        html += `</ol>`;
     });
+    html += `</ul>`;
 
     searchedWords[searchedWord] = html;
 
