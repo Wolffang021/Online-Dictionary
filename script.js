@@ -1,4 +1,11 @@
 const searchedWords = {};
+const input = document.getElementsByClassName('input')[0];
+
+input.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+        searchWord();
+    }
+});
 
 function displayDefinition(searchedWord, def) {
     const result = document.getElementsByClassName('result')[0];
