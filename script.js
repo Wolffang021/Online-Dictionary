@@ -1,7 +1,7 @@
 const definitionCache = {};
 const input = document.getElementsByClassName('input')[0];
 
-input.addEventListener('keydown', function(event) {
+input.addEventListener('keyup', function(event) {
     if (event.key === "Enter") {
         searchWord();
     }
