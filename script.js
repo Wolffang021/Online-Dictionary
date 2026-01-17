@@ -45,7 +45,7 @@ function displayDefinition(searchedWord, def) {
 }
 
 async function searchWord() {
-    const word = document.getElementsByClassName('input')[0].value.trim().toLowerCase();
+    const word = input.value.trim().toLowerCase();
     const result = document.getElementsByClassName('result')[0];
 
     if (!word) {
@@ -84,8 +84,9 @@ async function searchWord() {
                 throw new Error('No spelling correction available');
             }
     
-            searchedWords[word] = `<p><strong>Did you mean:</strong> ${responseJson[0].word}</p>
-                                   <p>Word definition does not exist!</p>`;
+            searchedWords[word] = 
+                `<p><strong>Did you mean:</strong> <a href="javascript:void(0)" onclick="document.getElementsByClassName('input')[0].value='${responseJson[0].word}';searchWord()">${responseJson[0].word}</a></p>
+                <p>Word definition does not exist!</p>`;
     
             result.innerHTML = searchedWords[word];
         }
@@ -93,6 +94,5 @@ async function searchWord() {
             searchedWords[word] = `<p>Word definition does not exist!</p>`;
             result.innerHTML = searchedWords[word];
         }
-
     }
 }
