@@ -45,7 +45,7 @@ function displayDefinition(searchedWord, def) {
 }
 
 async function searchWord() {
-    const word = document.getElementsByClassName('input')[0].value.trim();
+    const word = document.getElementsByClassName('input')[0].value.trim().toLowerCase();
     const result = document.getElementsByClassName('result')[0];
 
     if (!word) {
@@ -71,6 +71,28 @@ async function searchWord() {
         displayDefinition(word, definition[0]);
     }
     catch (error) {
-        result.innerHTML = `<p>Word definition does not exist!</p>`;
+        if (searchedWords[word]) {
+            result.innerHTML = searchedWords[word];
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://api.datamuse.com/words?sp=${word}`);
+            const responseJson = await response.json();
+
+            if (responseJson[0].word == word) {
+                throw new Error('No spelling correction available');
+            }
+    
+            searchedWords[word] = `<p><strong>Did you mean:</strong> ${responseJson[0].word}</p>
+                                   <p>Word definition does not exist!</p>`;
+    
+            result.innerHTML = searchedWords[word];
+        }
+        catch (error) {
+            searchedWords[word] = `<p>Word definition does not exist!</p>`;
+            result.innerHTML = searchedWords[word];
+        }
+
     }
 }

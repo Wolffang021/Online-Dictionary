@@ -75,3 +75,7 @@
 .wave-group .input:focus~.bar:after {
     width: 50%;
 }
+
+.result p {
+    /* background-color: #515151; */
+}
