@@ -1,4 +1,4 @@
-const searchedWords = {};
+const definitionCache = {};
 const input = document.getElementsByClassName('input')[0];
 
 input.addEventListener('keydown', function(event) {
@@ -39,7 +39,8 @@ function displayDefinition(searchedWord, def) {
     });
     html += `</ul>`;
 
-    searchedWords[searchedWord] = html;
+    definitionCache[searchedWord] = html;
+    document.getElementById('searchHistory').innerHTML += `<option value="${searchedWord}">`;
 
     result.innerHTML = html;
 }
@@ -55,8 +56,8 @@ async function searchWord() {
 
     result.innerHTML = `<p>Loading...</p>`;
 
-    if (searchedWords[word]) {
-        result.innerHTML = searchedWords[word];
+    if (definitionCache[word]) {
+        result.innerHTML = definitionCache[word];
         return;
     }
 
@@ -71,8 +72,8 @@ async function searchWord() {
         displayDefinition(word, definition[0]);
     }
     catch (error) {
-        if (searchedWords[word]) {
-            result.innerHTML = searchedWords[word];
+        if (definitionCache[word]) {
+            result.innerHTML = definitionCache[word];
             return;
         }
 
@@ -84,15 +85,15 @@ async function searchWord() {
                 throw new Error('No spelling correction available');
             }
     
-            searchedWords[word] = 
+            definitionCache[word] = 
                 `<p><strong>Did you mean:</strong> <a href="javascript:void(0)" onclick="document.getElementsByClassName('input')[0].value='${responseJson[0].word}';searchWord()">${responseJson[0].word}</a></p>
                 <p>Word definition does not exist!</p>`;
     
-            result.innerHTML = searchedWords[word];
+            result.innerHTML = definitionCache[word];
         }
         catch (error) {
-            searchedWords[word] = `<p>Word definition does not exist!</p>`;
-            result.innerHTML = searchedWords[word];
+            definitionCache[word] = `<p>Word definition does not exist!</p>`;
+            result.innerHTML = definitionCache[word];
         }
     }
 }
