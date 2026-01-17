@@ -15,13 +15,13 @@ function displayDefinition(searchedWord, def) {
 
     const pronounceAudio = def.phonetics?.find(p => p.audio);
     if (pronounceAudio) {
-        html += `<hr><audio controls src="${pronounceAudio.audio}"></audio>`;
+        html += `<audio controls src="${pronounceAudio.audio}"></audio>`;
     }
     else {
-        html += `<hr><p>Audio not available</p>`;
+        html += `<p>Audio not available</p>`;
     }
 
-    html += `<hr><ul>`;
+    html += `<ul>`;
     def.meanings.forEach(meaning => {
         html += `<h3><strong>Part of speech:</strong> ${meaning.partOfSpeech}</h3>`;
 
@@ -48,6 +48,7 @@ function displayDefinition(searchedWord, def) {
 async function searchWord() {
     const word = input.value.trim().toLowerCase();
     const result = document.getElementsByClassName('result')[0];
+    result.style.display = "block";
 
     if (!word) {
         result.innerHTML = `<p>Type a word</p>`;
