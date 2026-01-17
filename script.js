@@ -21,9 +21,9 @@ function displayDefinition(searchedWord, def) {
         html += `<hr><p>Audio not available</p>`;
     }
 
-    html += `<ul>`;
+    html += `<hr><ul>`;
     def.meanings.forEach(meaning => {
-        html += `<hr><h3><strong>Part of speech:</strong> ${meaning.partOfSpeech}</h3>`;
+        html += `<h3><strong>Part of speech:</strong> ${meaning.partOfSpeech}</h3>`;
 
         html += `<ol>`;
         meaning.definitions.forEach(definitionVar => {
